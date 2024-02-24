@@ -1,0 +1,25 @@
+{
+    "name": "lesson6",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon ./src/bot.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@grammyjs/auto-chat-action": "^0.1.1",
+        "@grammyjs/conversations": "^1.2.0",
+        "@grammyjs/menu": "^1.2.1",
+        "@grammyjs/types": "^3.4.6",
+        "@types/node": "^20.11.16",
+        "axios": "^1.6.7",
+        "grammy": "^1.20.3",
+        "instagram-get-url": "^1.0.2",
+        "nodemon": "^3.0.3",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}
