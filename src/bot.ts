@@ -1,4 +1,5 @@
-import { Bot } from 'grammy'
+import { Bot, webhookCallback } from 'grammy'
+import express from "express"
 import { MyContext, setupSession } from './session/session'
 import { conversations, createConversation } from '@grammyjs/conversations'
 import { startConversation } from './conversations/start.conversation'
@@ -36,8 +37,24 @@ bot.catch((error) => {
     console.log(error)
 })
 
-bot.start({
-    onStart(botInfo) {
-        console.log('Started')
-    },
-})
+
+if (process.env.NODE_ENV === "DEVELOPMENT") {
+    bot.start({
+        onStart(botInfo) {
+            console.log('Started')
+        },
+    })
+} else {
+    const port = process.env.PORT || 3000;
+    const app = express();
+    app.use(express.json());
+
+    app.get("/", (req, res) => {
+        res.json({
+            message: "Bot is running"
+        })
+    })
+
+    app.use(`/${bot.token}`, webhookCallback(bot, "express"));
+    app.listen(port, () => console.log(`listening on port ${port}`));
+}
